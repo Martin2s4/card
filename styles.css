@@ -74,14 +74,25 @@ body {
     border-right: 2px solid orange;
     white-space: nowrap;
     overflow: hidden;
-    width: 0;
+    display: inline-block;
+    max-width: 0ch; /* animated from 0 → N ch */
     animation: typing 4s steps(40, end) forwards, blink 0.8s step-end infinite;
     color: #f8f8f8;
 }
 
-
 .about.finished {
     border-right: none;
+    /* allow full width once typing finished */
+    max-width: none;
+}
+
+@keyframes typing {
+    from { max-width: 0ch; }
+    to   { max-width: 40ch; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
 }
 footer {
     margin-top: 20px;
